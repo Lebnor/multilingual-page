@@ -17,6 +17,9 @@ const translations = {
         "tab-b-content": "The pandemic is still going on",
         "tab-c": "Say Goodbye",
         "tab-c-content": "Bye! see you later",
+        "made-by": "made by Liel Ben-Or",
+        "code-on": "code on",
+        "github": "github"
     },
     fr: {
         "name": "French",
@@ -29,6 +32,9 @@ const translations = {
         "tab-b-content": "La pandémie continue",
         "tab-c": "au revoir",
         "tab-c-content": "À plus tard!",
+        "made-by": "faite par Liel Ben-Or",
+        "code-on": "code dans",
+        "github": "github"
     },
     he: {
         "name": "Hebrew",
@@ -41,6 +47,9 @@ const translations = {
         "tab-b-content": "מגיפת הקורונה עדיין ממשיכה",
         "tab-c": "להתראות",
         "tab-c-content": "ביי ביי!",
+        "made-by": "הוכן ע\"י ליאל בן-אור",
+        "code-on": "הקוד זמין ב",
+        "github": "גיטהאב"
     },
 
 };
