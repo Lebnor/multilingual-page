@@ -1,0 +1,239 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --fw-light: 100;
+    --fw-reg: 400;
+    --fw-bold: 600;
+
+    --clr-light: #fff;
+    --clr-gray: rgba(0, 255, 255, .5);
+    --clr-dark: #2d2d2d;
+    --clr-accent: #2196f3;
+    --clr-accent-darker: #219ddd;
+    --clr-complimentary: #F37E21;
+    --clr-double-split-complimentary: #2E33F2;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    /* border radius to switch between circular or rectangle */
+    --br: 50%;
+
+    /* box shadow */
+    --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+        0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+/* Adjust font sizes for smaller screens */
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+/* General styles */
+
+html {
+    scroll-behavior: smooth;
+    
+}
+
+body {
+    background-color: var(--clr-gray);
+    color: var(--clr-dark);
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    background-image: url("img/subtle-lightblue-1080.png");
+    background-size: cover;
+}
+
+main {
+    color: var(--clr-dark);
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--clr-light);
+    padding: 0 4rem;
+    margin: 0 auto 3em;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--clr-accent);
+}
+
+.logo__item ~ .logo__item {
+    /* padding: 0 .5em; */
+}
+
+
+.languages {
+    /* position: absolute;
+    right: 1em;
+    top: 2em;
+    padding: .5em; */
+    height: fit-content;
+    padding: .5em;
+    float: right;
+}
+
+@media screen and (max-width: 900px) {
+    header {
+        padding: 0;
+        flex-direction: column;
+    }
+    .languages {
+        position: relative;
+    }
+}
+
+select {
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+}
+
+select option:hover, select option:checked  {
+    background-color: var(red) !important;
+}
+
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px green inset;
+}
+
+section {
+    background: var(--clr-light);
+    border: 1px solid gray;
+    box-shadow: var(--bs);
+    margin: 1 auto;
+    min-width: 50vw;
+
+}
+
+.tabs-container {
+    padding: 2em;
+    /* background-image: url("img/SL_042620_30310_15.jpg"); */
+    background-size: cover;
+}
+
+.content {
+    color: var(--clr-dark);
+    padding: 1em;
+}
+
+.appear {
+    animation-name: appear;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+    
+}
+
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px ridge lightgray;
+}
+
+.tabs > * {
+    flex: 1;
+}
+
+.tab {
+    cursor: pointer;
+    padding: .5rem;
+}
+
+.tab ~ .tab {
+    border-left: 1px solid lightgray;
+}
+
+.tab:hover:not(.active) {
+    background-color: rgba(190, 190, 190, .25);
+}
+
+.active {
+    background-color: var(--clr-accent-darker);
+    color: var(--clr-light);
+}
+
+ 
+.select {
+    position: relative;
+    display: block;
+    width: calc(2em + 100px);
+    background: var(--clr-accent);
+    overflow: hidden;
+    border-radius: .25em;
+    outline: 0;
+    box-shadow: var(--bs);
+}
+ 
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: var(--clr-light);
+    cursor: pointer;
+    outline: 0;
+}
+ 
+select::-ms-expand {
+    display: none;
+}
+ 
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 0;
+    padding: 0 1em;
+    background: var(--clr-accent);
+    color: var(--clr-light);
+    pointer-events: none;
+}
+ 
+.select:hover::after {
+    color: var(--clr-double-split-complimentary);
+}
+ 
+.select::after {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}

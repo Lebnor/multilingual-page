@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title data-translation-key="page-title">My Multilingual Page</title>
+        <link href="styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header dir="ltr">
+            <div class="logo">
+                <img
+                    class="logo__item"
+                    src="img/icon.png"
+                    alt="liel's logo"
+                    width="64"
+                />
+                <h1 class="logo__item">iel</h1>
+            </div>
+            <h1 data-translation-key="nav-title">My multilingual page</h1>
+            <div class="select">
+                <select class="languages" id="languages"></select>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <div class="tabs-container">
+                    <h2 data-translation-key="tabs-header">
+                        Hello! What would you like to do today?
+                    </h2>
+                    <!-- Tabs buttons -->
+                    <div class="tabs" id="tabs">
+                        <div class="tab active" data-translation-key="tab-a">
+                            Hello
+                        </div>
+                        <div class="tab" data-translation-key="tab-b">News</div>
+                        <div class="tab" data-translation-key="tab-c">
+                            Good bye
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs content -->
+                <div class="content appear" id="content"></div>
+            </section>
+        </main>
+
+        <script src="index.js"></script>
+    </body>
+</html>
