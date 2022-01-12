@@ -67,6 +67,9 @@ function initializeLanguageDropdown() {
         option.value = language;
         option.innerText = translations[language]["name"];
         option.style = ""
+        if (language === currentLang) {
+            option.selected = true;
+        }
         options.push(option);
 
     }
@@ -105,6 +108,7 @@ function initializeTabs() {
             loadTabContent();
         });
     }
+    loadTabContent();
 }
 
 // will change the content displayed based on which tab is selected(active)
@@ -127,6 +131,8 @@ function setLocale(language) {
     currentTranslation = translations[language];
     currentLang = language;
 
+    localStorage.setItem("language", language); // insensitive information, OK to save in localstorage
+
     if (rtlLanguages.includes(language)) {
         // the page should render rtl for this language
         document.documentElement.dir = "rtl";
@@ -135,25 +141,41 @@ function setLocale(language) {
         document.documentElement.dir = "ltr";
     }
 
-    translatePage();
     loadTabContent();
+    translatePage();
+
 }
 
 // renders the current language for all translateable elements in the page
 function translatePage() {
+    currentTranslation = translations[currentLang];
+    
     const translatedElements = document.querySelectorAll(
         "[data-translation-key]"
     );
+
     for (let i = 0; i < translatedElements.length; i++) {
         const element = translatedElements[i];
         const translationKey = element.getAttribute("data-translation-key");
         const translated = currentTranslation[translationKey];
         element.innerText = translated;
     }
+
+    if (rtlLanguages.includes(currentLang)) {
+        // the page should render rtl for this language
+        document.documentElement.dir = "rtl";
+    } else {
+        // the page should render ltr
+        document.documentElement.dir = "ltr";
+    }
 }
 
 window.onload = () => {
+    currentLang = localStorage.getItem("language") || defaultLang;
+    currentTranslation = translations[currentLang];
     initializeTabs();
-    setLocale(defaultLang);
     initializeLanguageDropdown();
+    setLocale(currentLang);
+    translatePage();
+
 };

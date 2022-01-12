@@ -146,7 +146,7 @@ section {
 
 .content {
     color: var(--clr-dark);
-    padding: 1em;
+    padding: 0em 2em 2em 2em;
 }
 
 .appear {
