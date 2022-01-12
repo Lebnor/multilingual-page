@@ -9,7 +9,8 @@ const translations = {
     en: {
         "name": "English",
         "page-title": "My multilingual page",
-        "nav-title": "My multilingual page",
+        "nav-title": "Multilingual page",
+        "nav-subtitle": "Read in your favorite language",
         "tabs-header": "What would you like to read today?",
         "tab-a": "Greet",
         "tab-a-content": "Hello world!",
@@ -24,7 +25,8 @@ const translations = {
     fr: {
         "name": "French",
         "page-title": "Mon page multilingue",
-        "nav-title": "Mon page multilingue",
+        "nav-title": "page multilingue",
+        "nav-subtitle": "lire dans votre langue préférée",
         "tabs-header": "Qu'aimeriez-vous lire aujourd'hui?",
         "tab-a": "Saluer",
         "tab-a-content": "Bonjour le monde!",
@@ -39,7 +41,8 @@ const translations = {
     he: {
         "name": "Hebrew",
         "page-title": "העמוד מרובה-השפות שלי",
-        "nav-title": "העמוד מרובה-השפות שלי",
+        "nav-title": "עמוד מרובה שפות",
+        "nav-subtitle": "תקרא בשפא האהובה עליך",
         "tabs-header": "מה תרצו לקרוא היום?",
         "tab-a": "שלום",
         "tab-a-content": "שלום עולם!",
@@ -54,6 +57,7 @@ const translations = {
 
 };
 
+// populates language dropdown with clickable buttons that set the current page language
 function initializeLanguageDropdown() {
 
     // create a dropdown option for each language supported
@@ -78,6 +82,7 @@ function initializeLanguageDropdown() {
     });
 }
 
+// registers the tabs to be clickable
 function initializeTabs() {
     // register clicks on tab headers
     let tabs = document.getElementById("tabs").children;
@@ -91,6 +96,7 @@ function initializeTabs() {
             for (let j = 0; j < tabs.length; j++) {
                 tabs[j].classList.remove("active");
             }
+            
             activeTab.classList.toggle("active");
 
             // remember what is the active tab
@@ -101,6 +107,7 @@ function initializeTabs() {
     }
 }
 
+// will change the content displayed based on which tab is selected(active)
 function loadTabContent() {
     const tabType = currentActiveTab.getAttribute("data-translation-key");
     const innerTextVal = currentTranslation[tabType + "-content"];
@@ -113,6 +120,7 @@ function loadTabContent() {
     content.classList.add("appear");
 }
 
+// sets the locale(language) the page is rendered in
 function setLocale(language) {
     if (language === currentLang) return;
 
@@ -131,6 +139,7 @@ function setLocale(language) {
     loadTabContent();
 }
 
+// renders the current language for all translateable elements in the page
 function translatePage() {
     const translatedElements = document.querySelectorAll(
         "[data-translation-key]"

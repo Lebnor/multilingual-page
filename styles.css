@@ -30,7 +30,7 @@
 }
 
 /* Adjust font sizes for smaller screens */
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     :root {
         --fs-h1: 4.5rem;
         --fs-h2: 3.75rem;
@@ -47,23 +47,22 @@ html {
 
 body {
     font-family: "Times New Roman", Times, serif;
-    background-color: var(--clr-gray);
     color: var(--clr-dark);
     margin: 0;
     font-size: var(--fs-body);
-    line-height: 1.6;
+    line-height: 1.2;
     background-image: url("img/subtle-lightblue-1080.png");
     background-size: cover;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
 }
 
 main {
     color: var(--clr-dark);
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 3em;
     flex: 1;
 }
 
@@ -73,15 +72,44 @@ header {
     align-items: center;
     background-color: var(--clr-light);
     padding: 0 4rem;
+    margin-bottom: 1em;
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+    padding: 1em 3em 3em 3em;
+}
+
+.nav-titles {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.1;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-title {
+    font-size: var(--fs-h1);
+    line-height: 1;
+    padding: 0;
+}
+
+.nav-subtitle {
+    font-size: var(--fs-h3);
+    text-align: center;
+    font-weight: var(--fw-light);
+}
+
+@media screen and (min-width: 1200px) {
+    .nav-title {
+        line-height: 0;
+    }
 }
 
 .logo {
     display: flex;
     align-items: center;
-    color: var(--clr-accent);
+    color: var(--clr-light);
+    font-size: var(--fs-h3);
 }
-
-
 
 .languages {
     padding: 0.5em;
@@ -90,30 +118,23 @@ header {
 @media screen and (max-width: 900px) {
     header {
         padding: 0;
+        background-color: var(--clr-accent);
+        color: var(--clr-light);
+        padding-bottom: 3em;
         flex-direction: column;
     }
     .languages {
         position: relative;
     }
-}
 
-select {
-    background-color: var(--clr-accent);
-    color: var(--clr-light);
-}
-
-select option:hover,
-select option:checked {
-    background-color: var(red) !important;
-}
-
-select.decorated option:hover {
-    box-shadow: 0 0 10px 100px green inset;
+    .nav-title {
+        line-height: 0;
+    }
 }
 
 section {
     background: var(--clr-light);
-    border: 1px solid gray;
+    border: 1px ridge lightgray;
     box-shadow: var(--bs);
     margin: 1 auto;
     min-width: 50vw;
@@ -121,8 +142,6 @@ section {
 
 .tabs-container {
     padding: 2em;
-    /* background-image: url("img/SL_042620_30310_15.jpg"); */
-    background-size: cover;
 }
 
 .content {
@@ -152,13 +171,10 @@ section {
     border-bottom: 1px ridge lightgray;
 }
 
-.tabs > * {
-    flex: 1;
-}
-
 .tab {
     cursor: pointer;
     padding: 0.5rem;
+    flex-basis: 100%;
 }
 
 .tab ~ .tab {
@@ -176,22 +192,20 @@ section {
 
 .select {
     position: relative;
-    display: block;
-    width: calc(2em + 100px);
-    background: var(--clr-accent);
-    overflow: hidden;
-    border-radius: 0.25em;
+    width: calc(1em + 100px);
     outline: 0;
     box-shadow: var(--bs);
+
 }
 
 select {
     width: 100%;
-    height: 100%;
     margin: 0;
-    padding: 0 0 0 0.5em;
-    color: var(--clr-light);
+    background-color: var(--clr-light);
+    color: var(--clr-accent-darker);
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
     outline: 0;
 }
 
@@ -200,15 +214,20 @@ select::-ms-expand {
 }
 
 .select::after {
-    content: "\25BC";
+    content: "\25BC ";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    bottom: 0;
-    padding: 0 1em;
-    background: var(--clr-accent);
-    color: var(--clr-light);
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 0 .5em;
+    margin-top: 7px;
+    margin-right: 4px;
+    background: var(--clr-light);
+    color: var(--clr-dark);
     pointer-events: none;
+    border: none;
+    border-radius: 5px;
+    outline: 0;
 }
 
 .select:hover::after {
@@ -227,4 +246,9 @@ select::-ms-expand {
     display: flex;
     justify-content: space-evenly;
     color: var(--clr-light);
+}
+
+p {
+    margin: .25em;
+    padding: .25em;
 }

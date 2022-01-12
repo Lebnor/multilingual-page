@@ -9,7 +9,7 @@
         <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
-        <header dir="ltr">
+        <header class="header" dir="ltr">
             <div class="logo">
                 <img
                     class="logo__item"
@@ -17,9 +17,14 @@
                     alt="liel's logo"
                     width="64"
                 />
-                <h1 class="logo__item">iel</h1>
+                <p class="logo__item">iel</p>
             </div>
-            <h1 data-translation-key="nav-title">My multilingual page</h1>
+            <div class="nav-titles">
+                <h1 data-translation-key="nav-title" class="nav-title">Multilingual page</h1>
+                <h2 data-translation-key="nav-subtitle" class="nav-subtitle">Read in your favorite language</h2>    
+            </div>
+
+            <!-- Select dropdown will be generated programmatically -->
             <div class="select">
                 <select class="languages" id="languages"></select>
             </div>
@@ -48,6 +53,7 @@
             </section>
         </main>
 
+        <!-- Footer -->
         <footer class="footer">
 
             <p data-translation-key="made-by">Made by Liel Ben-Or</p>
