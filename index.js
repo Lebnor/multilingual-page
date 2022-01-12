@@ -42,7 +42,7 @@ const translations = {
         "name": "Hebrew",
         "page-title": "העמוד מרובה-השפות שלי",
         "nav-title": "עמוד מרובה שפות",
-        "nav-subtitle": "תקרא בשפא האהובה עליך",
+        "nav-subtitle": "תקרא בשפה האהובה עליך",
         "tabs-header": "מה תרצו לקרוא היום?",
         "tab-a": "שלום",
         "tab-a-content": "שלום עולם!",
