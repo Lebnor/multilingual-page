@@ -1,11 +1,12 @@
 (function() {
-    const defaultLang = "en";
-    let currentLang = "he";
-    let currentTranslation = {};
-    let currentActiveTab = "";
+
+    let currentLang = localStorage.getItem("language") || navigator.language;
+    let currentTab = "";
+    
+    // edit this constant to set more languages as rtl direction
     const rtlLanguages = ["ar", "he"];
 
-    // edit this variable to add support for more languages
+    // edit this constant to add support for more languages
     const translations = {
         en: {
             name: "English",
@@ -79,7 +80,7 @@
         // update locale when an option is selected
         select.addEventListener("change", () => {
             const language = select.value;
-            setLocale(language);
+            setPageLanguage(language);
         });
     }
 
@@ -89,9 +90,6 @@
         let tabs = document.getElementById("tabs").children;
         for (let i = 0; i < tabs.length; i++) {
             let activeTab = tabs[i];
-            if (!currentActiveTab) {
-                currentActiveTab = activeTab;
-            }
             activeTab.addEventListener("click", () => {
                 // remove active from all other tabs
                 for (let j = 0; j < tabs.length; j++) {
@@ -100,18 +98,22 @@
 
                 activeTab.classList.toggle("active");
 
-                // remember what is the active tab
-                currentActiveTab = activeTab;
+                // remember what is the current tab
+                currentTab = activeTab;
 
-                loadTabContent();
+                loadCurrentTabContent();
             });
         }
-        loadTabContent();
+        loadCurrentTabContent();
     }
 
     // will change the content displayed based on which tab is selected(active)
-    function loadTabContent() {
-        const tabType = currentActiveTab.getAttribute("data-translation-key");
+    function loadCurrentTabContent() {
+        if (!currentTab) {
+            currentTab = document.querySelector("#tabs").children[0];
+        }
+        const tabType = currentTab.getAttribute("data-translation-key");
+        const currentTranslation = translations[currentLang];
         const innerTextVal = currentTranslation[tabType + "-content"];
         const content = document.querySelector("#content");
         content.innerText = innerTextVal;
@@ -123,11 +125,9 @@
     }
 
     // sets the locale(language) the page is rendered in
-    function setLocale(language) {
-        if (language === currentLang) return;
-
-        currentTranslation = translations[language];
+    function setPageLanguage(language) {
         currentLang = language;
+        const currentTranslation = translations[language];
 
         localStorage.setItem("language", language); // insensitive information, OK to save in localstorage
 
@@ -139,13 +139,7 @@
             document.documentElement.dir = "ltr";
         }
 
-        loadTabContent();
-        translatePage();
-    }
-
-    // renders the current language for all translateable elements in the page
-    function translatePage() {
-        currentTranslation = translations[currentLang];
+        loadCurrentTabContent();
 
         const translatedElements = document.querySelectorAll(
             "[data-translation-key]"
@@ -158,21 +152,20 @@
             element.innerText = translated;
         }
 
-        if (rtlLanguages.includes(currentLang)) {
+        if (rtlLanguages.includes(language)) {
             // the page should render rtl for this language
             document.documentElement.dir = "rtl";
         } else {
             // the page should render ltr
             document.documentElement.dir = "ltr";
         }
+
     }
 
     window.onload = () => {
-        currentLang = localStorage.getItem("language") || defaultLang;
-        currentTranslation = translations[currentLang];
+        const currentLang = localStorage.getItem("language") || navigator.language;
         initializeTabs();
         initializeLanguageDropdown();
-        setLocale(currentLang);
-        translatePage();
+        setPageLanguage(currentLang);
     };
-}());
+})();
